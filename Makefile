@@ -18,10 +18,9 @@ main.efi: main.c
 		-j .rel -j .rela -j .rel.* -j .rela.* -j .reloc --target efi-app-$(ARCH) \
 		--subsystem=10 main.so main.efi
 
-kernel: kernel.asm
-	aarch64-linux-gnu-as kernel.asm -o kernel.o
-	aarch64-none-elf-gcc -nostdlib -ffreestanding -fpie -fPIC -T linker.ld kernel.o -o kernel.elf
+kernel: kernel.c
+	aarch64-linux-gnu-gcc -nostdlib -ffreestanding -fno-pie -fPIC -T linker.ld kernel.c -o kernel.elf
 	aarch64-linux-gnu-objcopy -O binary kernel.elf kernel
 
 clean:
-	rm -f *.img *.efi *.so *.o *.elf
+	rm -f *.img *.efi *.so *.o
