@@ -7,7 +7,7 @@ ARCH=aarch64
 test: main.efi
 	./runefi.sh main.efi $(ARCH)
 
-main.efi:
+main.efi: main.c
 	$(CC) -I../gnu-efi/inc -I../gnu-efi/inc/$(ARCH) -fpic -ffreestanding -fno-stack-protector \
 		-fno-stack-check -fshort-wchar \
 		-c main.c -o main.o
