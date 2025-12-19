@@ -1,0 +1,6 @@
+*.so
+*.o
+*.efi
+*.elf
+*.img
+.vscode/*
